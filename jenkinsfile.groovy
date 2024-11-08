@@ -23,13 +23,13 @@ pipeline {
         }
         stage('Terraform Plan'){
             steps{
-                bat 'terraform plan -var "access_key=${AWS_ACCESS_KEY}" -var "secret_key=${AWS_SECRET_KEY}" var "region=${AWS_REGION}"'
+                bat 'terraform plan -var "access_key=${AWS_ACCESS_KEY}" -var "secret_key=${AWS_SECRET_KEY}" -var "region=${AWS_REGION}"'
             }
         }
         stage('Terraform Apply'){
             steps{
                 input message : "Confirm Deployment?", ok:"Deploy"
-                bat 'terraform apply -var "access_key=${AWS_ACCESS_KEY}" -var "secret_key=${AWS_SECRET_KEY}" var "region=${AWS_REGION}" --auto-approve'
+                bat 'terraform apply -var "access_key=${AWS_ACCESS_KEY}" -var "secret_key=${AWS_SECRET_KEY}" -var "region=${AWS_REGION}" --auto-approve'
             }
         }
 
